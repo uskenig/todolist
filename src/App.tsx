@@ -16,6 +16,15 @@ function App() {
         { id: v1(), title: "GraphQL", isDone: false },
     ]);
 
+    const changeIsDone = (newId: string, newIsDone: boolean) => {
+        setTasks(tasks.map(el => el.id === newId ? {...el, isDone : newIsDone} : el))
+        // let currentTask = tasks.find(el => el.id === newId)
+        // if(currentTask){
+        //     currentTask.isDone = newIsDone
+        //     setTasks([...tasks])
+        // }
+    }
+
     const addTask = (newTitle:string) => {
         const newTask:TaskType = { id: v1(), title: newTitle, isDone: false }
         setTasks([newTask, ...tasks])
@@ -47,7 +56,9 @@ function App() {
                       tasks={tasksForTodolist}
                       removeTask={removeTask}
                       changeFilter={changeFilter}
-                      addTask={addTask}/>
+                      addTask={addTask}
+                      changeIsDone={changeIsDone}
+            />
         </div>
     );
 }
